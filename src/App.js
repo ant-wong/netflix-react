@@ -36,14 +36,15 @@ export default class App extends Component {
         const data = await axios.post('http://127.0.0.1:5000/new', {
           code: country
         })
-        console.log(data.data.ITEMS)
-        const movieJSX = data.data.ITEMS.map((data, i) =>
-          <div key={i} className="column is-one-quarter">
-            <h2>{data.title}</h2>
-            <p>Date added: {data.unogsdate}</p>
-            <img src={data.image}></img>
+
+        const movieJSX = data.data.ITEMS.map((data, i) => {
+          let newData = JSON.parse(data)
+          return <div key={i} className="column is-one-quarter">
+            <h2>{newData.title}</h2>
+            <p>Date added: {newData.unogsdate}</p>
+            <img src={newData.image}></img>
           </div>
-        )
+        })
         this.setState({
           ...this.state,
           movies: movieJSX
@@ -63,14 +64,15 @@ export default class App extends Component {
         const data = await axios.post('http://127.0.0.1:5000/expire', {
           code: country
         })
-        console.log(data.data.ITEMS)
-        const movieJSX = data.data.ITEMS.map((data, i) =>
-          <div key={i} className="column is-one-quarter">
-            <h2>{data.title}</h2>
-            <p>Date of removal: {data.unogsdate}</p>
-            <img src={data.image}></img>
+ 
+        const movieJSX = data.data.ITEMS.map((data, i) => {
+          let newData = JSON.parse(data)
+          return <div key={i} className="column is-one-quarter">
+            <h2>{newData.title}</h2>
+            <p>Date of removal: {newData.unogsdate}</p>
+            <img src={newData.image}></img>
           </div>
-        )
+        })
         this.setState({
           ...this.state,
           movies: movieJSX
