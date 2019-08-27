@@ -36,12 +36,12 @@ export default class App extends Component {
         const data = await axios.post('http://127.0.0.1:5000/new', {
           code: country
         })
-
+        console.log(data.data)
         const movieJSX = data.data.ITEMS.map((data, i) => {
           let newData = JSON.parse(data)
           return <div key={i} className="column is-one-quarter">
             <h2>{newData.title}</h2>
-            <p>Date added: {newData.unogsdate}</p>
+            <p>Date added: {newData.date}</p>
             <img src={newData.image}></img>
           </div>
         })
@@ -69,7 +69,7 @@ export default class App extends Component {
           let newData = JSON.parse(data)
           return <div key={i} className="column is-one-quarter">
             <h2>{newData.title}</h2>
-            <p>Date of removal: {newData.unogsdate}</p>
+            <p>Date of removal: {newData.date}</p>
             <img src={newData.image}></img>
           </div>
         })
